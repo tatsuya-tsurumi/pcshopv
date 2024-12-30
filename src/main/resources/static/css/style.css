@@ -71,4 +71,21 @@ td {
 	color: red;
 }
 
+.user_regist {
+	text-align: right;
+	margin-right: 32px;
+}
+
+.regist_btn {
+	border: 1px solid #ccc;
+	padding: 16px 32px;
+	background: #eee8aa;
+	border-radius: 8px;
+}
+
+.regist_btn:hover {
+	background: #005FFF;
+	color: #FFFFFF;
+}
+
 
