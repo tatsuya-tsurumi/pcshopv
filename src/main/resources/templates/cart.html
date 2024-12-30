@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>カート内一覧</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+	<div th:insert="~{header}"></div>
+	
+		<p th:if="${session.cart.size() == 0}">カートの中は空です</p>
+
+	
+		<div th:if="${session.cart.size() > 0}">
+			<table class="cart-list">
+			<tr>
+				<th></th><th>商品ID</th><th>商品名</th><th>価格</th><th>写真</th>
+			</tr>
+	
+			<tr th:each="item, iterStat : ${session.cart}">
+				<td>
+					<form action="remove-prod" method="post">
+						<input type="hidden" name="idx" th:value="${iterStat.index}">
+						<input type="submit" value="削除">
+					</form>
+				</td>
+				<td th:text="${item.productId}"></td>
+				<td th:text="${item.productName}"></td>
+				<td th:text="${item.price}"></td>
+				<td><img th:src="${item.imgId}" alt="画像" height="80px" width="130px"></td>
+			</tr>
+
+			</table>
+		</div>
+		<br>
+		<div th:if="${session.cart.size() != 0}">
+		<form action="pay" method="post">
+			<input type="submit" value="精算"><br>
+		</form>
+		</div>
+			
+
+</body>
+</html>

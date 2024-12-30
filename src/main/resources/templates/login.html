@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	
+
+	<h2>ログイン</h2>
+	
+	<p th:text="${login_msg}" class="login_msg"></p>
+	
+	<form th:action="@{login-execute}" method="post">
+		ユーザID&emsp;:<input type="text" name="userId" required ><br>
+		パスワード:<input type="password" name="password" ><br><br>
+		<input type="submit" value="ログイン">
+	</form>
+	
+	
+</body>
+</html>

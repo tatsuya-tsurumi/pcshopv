@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<div th:insert="~{header}"></div>
+	
+	<div th:if="${cart != null and cart.size() > 0}">
+	<h2>精算完了</h2>
+	
+	<p>お買い上げ、ありがとうございました。</p>
+	
+			<table class="pay-list">
+				<tr>
+					<th>商品ID</th><th>商品名</th><th>価格</th><th>写真</th>
+				</tr>
+				
+				<tr th:each="item : ${cart}">
+				
+				<td th:text="${item.productId}"></td>
+				<td th:text="${item.productName}"></td>
+				<td th:text="${item.price + '円'}">
+				<td><img th:src="${item.imgId}" alt="画像" height="80px" width="130px"></td>
+			</tr>
+	
+							
+			</table>
+			<br>
+			<span th:text="${'合計' + session.sum + '円'}"></span>
+	</div>
+ <div th:unless="${cart != null and cart.size() > 0}">
+        <br><br>
+        <p>購入処理は完了しました</p>
+       
+    </div>
+</body>
+</html>

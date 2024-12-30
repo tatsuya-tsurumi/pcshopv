@@ -1,0 +1,17 @@
+
+    <header >
+	<h1>PC販売店</h1>
+	<hr>
+	ユーザーID:<span th:text="${session.userId}"></span>
+	<hr>
+		
+	<!-- ナビ表示 -->
+	｜<a th:href="prod-list">商品選択</a>
+	｜<a th:href="show-cart">カート内一覧</a>
+	｜<a th:href="purchase-history">購入履歴</a>
+	｜<a th:href="chg-pass">パスワード変更</a>
+	｜<a th:href="logout">ログアウト</a>|	
+	<hr>
+    </header>
+
+

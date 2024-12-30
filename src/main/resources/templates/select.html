@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品選択</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+		
+	<div th:insert="~{header}"></div>
+
+	<h2>商品選択</h2>
+	
+	<p th:text="${msg}" class="select_msg"></p>
+	
+
+	
+	<table class="select-list">
+		<tr>
+			<th></th><th>商品ID</th><th>商品名</th><th>価格</th><th>写真</th>
+		</tr>
+		
+		<tr th:each="prod : ${session.prodList}">
+			<td>
+				<form th:action="@{/add-prod}" method="post">
+					<input type="hidden" name="productId" th:value="${prod.prodId}"> 
+					<input type="hidden" name="productName" th:value="${prod.prodName}"> 
+					<input type="hidden" name="price" th:value="${prod.price}"> 
+					<input type="hidden" name="imgId" th:value="${prod.imgId}"> 
+					<input type="submit" value="選択">
+				</form>
+			</td>
+			<td th:text="${prod.prodId}"></td>
+			<td th:text="${prod.prodName}"></td>
+			<td th:text="${prod.price}"></td>
+			<td><img th:src="${prod.imgId}" alt="画像" height="80px" width="130px"></td>
+		</tr>
+		
+	</table>
+	
+	<div th:if="${session.prodList == null}" class="prod-list-error-msg">
+		<p>商品一覧を取得できませんでした。</p>
+		<p>お手数ですが再ログインしてください</p>
+	</div>
+
+</body>
+</html>

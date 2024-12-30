@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<div th:insert="~{header}"></div>
+	
+	<p th:if="${purchaseList.size() == 0}">購入履歴はありません</p>
+	
+	<div th:if="${purchaseList.size() > 0}">
+		<h2>購入履歴</h2>
+			<table class="history-list">
+				<tr>
+					<th>売上ID</th><th>商品ID</th><th>商品名</th>
+					<th>単価</th><th>数量</th><th>購入日</th>
+				</tr>
+				<tr th:each="item : ${purchaseList}">
+					<td th:text="${item.salesId}"></td>
+					<td th:text="${item.prodId}"></td>
+					<td th:text="${item.prodName}"></td>
+					<td th:text="${item.price} + '円'"></td>
+					<td th:text="${item.quantity}"></td>
+					<td th:text="${item.salesDate}"></td>
+					
+				</tr>
+			</table>
+	</div>
+			<br>
+
+</body>
+</html>

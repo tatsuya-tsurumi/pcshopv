@@ -1,0 +1,21 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import com.example.demo.entity.Prod;
+import com.example.demo.form.AddProdForm;
+
+import jakarta.servlet.http.HttpSession;
+
+public interface ProdService {
+	//DBから全商品を検索する処理
+	List<Prod> findByProd();
+	//商品をカートへ追加する処理
+	void addProd(AddProdForm form, HttpSession session);
+	
+	//カート内の商品を購入する処理
+	void payProd(List<AddProdForm> cart,HttpSession session);
+	
+	//DBから過去に購入した商品を検索する処理
+	List<Prod> findByUserId(String userId);
+}

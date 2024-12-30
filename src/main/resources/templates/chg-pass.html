@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>パスワード変更	</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	
+	<div th:insert="~{header}"></div>
+	
+		<h2	>パスワード変更</h2>
+		
+		<p th:text="${chg_pass_msg}" class="chg_pass_msg"></p>
+	
+	<form action="chg-pass-execute" method="post">
+		パスワード:<input type="password" name="password" required><br>
+		再入力&emsp;&emsp;:<input type="password" name="again" required><br><br>
+		<input type="hidden" name="userId", th:value="${session.userId}">
+		<input type="submit" value="パスワード変更">
+	</form>
+
+</body>
+</html>
