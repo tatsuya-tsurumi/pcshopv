@@ -25,7 +25,7 @@ public class LoginController {
 	private final ProdService prodService;
 
 	/*--- 最初のリクエスト -----------------*/
-	@GetMapping("/login")
+	@GetMapping("/")
 	public String login() {
 		return "login";
 	}
