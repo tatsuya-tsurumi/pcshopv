@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 
+
 @Controller
 public class CommonController {
 	
@@ -27,6 +28,12 @@ public class CommonController {
 	public String completePay() {
 		return  "pay";
 	}
+	
+	@GetMapping("complete-regist")
+	public String completeRegist() {
+		return "regist";
+	}
+	
 	
 	
 	

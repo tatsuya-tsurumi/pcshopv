@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.User;
 import com.example.demo.form.ChgPassForm;
 import com.example.demo.form.LoginForm;
+import com.example.demo.form.RegistForm;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	private final JdbcTemplate jdbcTemplate;
 	
+	//ログイン認証処理
 	@Override
 	public User selectUser(LoginForm form) {
 		// DBアクセス処理
@@ -33,6 +35,7 @@ public class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 
+	//パスワード変更処理
 	@Override
 	public int updatePass(ChgPassForm form, String pass) {
 		int cnt = 0;
@@ -45,6 +48,26 @@ public class UserRepositoryImpl implements UserRepository {
 		return cnt;
 		// TODO 自動生成されたメソッド・スタブ
 		
+	}
+
+	//ユーザー登録処理及びパスワード登録処理
+	@Override
+	public int registUser(RegistForm form) {
+		int cnt = 0;
+		
+		String sql = " INSERT INTO m_user (user_id, user_name, email, birth_day ) "
+				   + " VALUES(?, ?, ?, ?										) ";
+		cnt = jdbcTemplate.update(sql, form.getUserId(), form.getUserName(),
+				form.getEmail(), form.getBirthDay());
+		
+		if(cnt > 0) {
+			cnt = 0;
+			sql = " INSERT INTO m_password (user_id, password) "
+				+ " VALUES(?, ?)							   ";
+			cnt = jdbcTemplate.update(sql, form.getUserId(), form.getPassword());
+		}
+		
+		return cnt;
 	}
 
 }

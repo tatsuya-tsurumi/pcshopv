@@ -67,7 +67,8 @@ td {
 
 .chg_pass_msg,
 .login_msg,
-.prod-list-error-msg {
+.prod-list-error-msg
+.regist-msg {
 	color: red;
 }
 

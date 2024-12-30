@@ -13,6 +13,7 @@ import com.example.demo.entity.User;
 import com.example.demo.form.CartForm;
 import com.example.demo.form.ChgPassForm;
 import com.example.demo.form.LoginForm;
+import com.example.demo.form.RegistForm;
 import com.example.demo.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -92,6 +93,15 @@ public class UserServiceImpl implements UserService {
 		}
 			return cnt;
 		
+	}
+
+	@Override
+	public int registUser(RegistForm form) {
+		// TODO 自動生成されたメソッド・スタブ
+		int cnt = 0;
+		
+		repository.registUser(form);
+		return cnt;
 	}
 	
 	//ログアウト処理
