@@ -39,6 +39,15 @@ public class ProdServiceImpl implements ProdService {
 		 
 		 return cart;
 	}
+	
+	//カート内商品の削除処理
+	@Override
+	public void removeProd(int idx, HttpSession session) {
+		@SuppressWarnings("unchecked")
+		List< Prod> cart = (List<Prod>) session.getAttribute("cart");
+		cart.remove(idx);
+		session.setAttribute("cart", cart);
+	}	
 
 	//カート内の商品を購入する処理をインフラ層へ依頼
 	@Override
@@ -64,5 +73,7 @@ public class ProdServiceImpl implements ProdService {
 		// 実際のDBアクセスをインフラ層へ依頼
 		List<Prod> list = repository.selectByUserId(userId);
 		return list;
-	}	
+	}
+
+
 }

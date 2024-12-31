@@ -12,6 +12,8 @@ public interface ProdService {
 	List<Prod> findByProd();
 	//商品をカートへ追加する処理
 	List<Prod> addProd(AddProdForm form, HttpSession session);
+	//カート内商品の削除処理
+	void removeProd(int idx, HttpSession session);
 	
 	//カート内の商品を購入する処理
 	int payProd(List<Prod> cart,HttpSession session);
