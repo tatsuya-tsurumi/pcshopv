@@ -55,6 +55,8 @@ public class UserRepositoryImpl implements UserRepository {
 	public int registUser(RegistForm form) {
 		int cnt = 0;
 		
+		
+		
 		String sql = " INSERT INTO m_user (user_id, user_name, email, birth_day ) "
 				   + " VALUES(?, ?, ?, ?										) ";
 		cnt = jdbcTemplate.update(sql, form.getUserId(), form.getUserName(),

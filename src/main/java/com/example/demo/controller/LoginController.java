@@ -48,4 +48,11 @@ public class LoginController {
 		}
 	}
 	
+	/*--- ログイン画面へ -----------------*/
+	@GetMapping("/login-page")
+	public String loginPage(HttpSession session) {
+		session.invalidate();
+		return "login";
+	}
+	
 }

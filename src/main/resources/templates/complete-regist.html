@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー登録完了</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2	>ユーザー登録完了</h2>
+		
+	<p th:text="${registMsg}" class="regist-msg"></p>
+	
+	<p th:text=" 'ようこそ、' + ${session.userName} + 'さん'"></p>
+	
+	<p><a th:href="prod-list">商品選択画面へ</a></p>
+	<p><a th:href="login-page">ログイン画面へ</a></p>
+
+</body>
+</html>
