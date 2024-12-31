@@ -30,11 +30,13 @@ public class RegistUserController {
 		
 		if(cnt > 0) {
 			redirectAttributes.addFlashAttribute("registMsg", "登録が完了しました");
+			return "redirect:/complete-regist";
 		} else {
-			redirectAttributes.addFlashAttribute("registMsg", "登録時にエラーが発生しました");
+			redirectAttributes.addFlashAttribute("errorMsg", "登録時にエラーが発生しました");
+			return "redirect:/error-regist";
 		}
 		
 		
-		return "redirect:/complete-regist";
+		
 	}
 }

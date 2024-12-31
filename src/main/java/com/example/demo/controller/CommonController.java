@@ -31,10 +31,12 @@ public class CommonController {
 	
 	@GetMapping("complete-regist")
 	public String completeRegist() {
-		return "regist";
+		return "complete-regist";
 	}
 	
-	
-	
+	@GetMapping("error-regist")
+	public String errorRegist() {
+		return "regist";
+	}
 	
 }

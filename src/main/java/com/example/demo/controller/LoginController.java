@@ -35,21 +35,13 @@ public class LoginController {
 	public String loginExcecute(@ModelAttribute LoginForm form,Model model,
 			HttpSession session) {
 		
-		
 		boolean result = loginService.loginExecute(form, session, model);
 		
-		String userId = form.getUserId();
-		
-		session.setAttribute("userId", userId);
-		model.addAttribute("userId", userId);
-		
 		if(result) {
-			
 			List<Prod> list = prodService.findByProd();
-	
 			session.setAttribute("prodList", list);
-			
-			
+			String userId = form.getUserId();
+			session.setAttribute("userId", userId);
 			return "select";
 		} else {
 			return "login";

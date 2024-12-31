@@ -25,11 +25,10 @@ public class UserServiceImpl implements UserService {
 	
 	private final UserRepository repository;
 
-	//ログイン処理
+	//ログイン処理、インフラ層へDBアクセス処理を依頼
 	@Override
 	public boolean loginExecute(@ModelAttribute LoginForm form,HttpSession session,
 			Model model) {
-		// インフラ層へDBアクセス処理を依頼
 		
 		boolean result = false;
 		
@@ -38,11 +37,9 @@ public class UserServiceImpl implements UserService {
 		try {
 			result = checkPassowrd(form.getPassword(), user.getPassword());
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
-		
+
 		if(result) {
 			List<CartForm> cart = new ArrayList<>();
 			session.setAttribute("cart", cart);
@@ -92,19 +89,24 @@ public class UserServiceImpl implements UserService {
 			cnt = 99;
 		}
 			return cnt;
-		
 	}
 
+	//ユーザー登録処理をインフラ層へ依頼、
 	@Override
 	public int registUser(RegistForm form) {
-		// TODO 自動生成されたメソッド・スタブ
 		int cnt = 0;
-		
-		repository.registUser(form);
+		if(form.getPassword().equals(form.getAgain())) {
+			try {
+				form.setPassword(hashPassword(form.getPassword()));
+			} catch (Exception e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			cnt = repository.registUser(form);
+		}
 		return cnt;
 	}
-	
-	//ログアウト処理
+
 	
 	
 	
