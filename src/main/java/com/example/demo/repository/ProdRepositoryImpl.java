@@ -107,7 +107,8 @@ public class ProdRepositoryImpl implements ProdRepository {
 			prod.setUserName((String) one.get("user_name"));
 			prod.setProductId((String) one.get("product_id"));
 			prod.setProductName((String) one.get("product_name"));
-			prod.setPrice((String) one.get("price"));
+			String price = String.valueOf(one.get("price"));
+			prod.setPrice(price);
 			prod.setQuantity((int) one.get("quantity"));
 			prod.setSalesDate((Date) one.get("sales_date"));
 			result.add(prod);
