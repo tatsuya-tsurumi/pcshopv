@@ -27,14 +27,20 @@ public class ProdServiceImpl implements ProdService {
 
 	//商品をカートへ追加する処理
 	@Override
-	public void addProd(AddProdForm form, HttpSession session) {
+	public List<Prod> addProd(AddProdForm form, HttpSession session) {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		@SuppressWarnings("unchecked")
-		List<AddProdForm> cart = (List<AddProdForm>) session.getAttribute("cart");
-		cart.add(form);
-		 session.setAttribute("cart", cart);
-		
+		List<Prod> cart = (List<Prod>) session.getAttribute("cart");
+		Prod prod = new Prod();
+		prod.setProductId(form.getProductId());
+		prod.setProductName(form.getProductName());
+		prod.setPrice(form.getPrice());
+		prod.setImgId(form.getImgId());
+		cart.add(prod);
+		 
+		 return cart;
+
 	}
 
 	//カート内の商品を購入する処理

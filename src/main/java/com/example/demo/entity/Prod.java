@@ -9,9 +9,9 @@ public class Prod {
 	private String userId;
 	private String userName;
 	private int salesId;
-	private String prodId;
-	private String prodName;
-	private int price;
+	private String productId;
+	private String productName;
+	private String price;
 	private int quantity;
 	private Date salesDate;
 	private String imgId; 

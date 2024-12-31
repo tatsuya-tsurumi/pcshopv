@@ -23,15 +23,15 @@
 		<tr th:each="prod : ${session.prodList}">
 			<td>
 				<form th:action="@{/add-prod}" method="post">
-					<input type="hidden" name="productId" th:value="${prod.prodId}"> 
-					<input type="hidden" name="productName" th:value="${prod.prodName}"> 
+					<input type="hidden" name="productId" th:value="${prod.productId}"> 
+					<input type="hidden" name="productName" th:value="${prod.productName}"> 
 					<input type="hidden" name="price" th:value="${prod.price}"> 
 					<input type="hidden" name="imgId" th:value="${prod.imgId}"> 
 					<input type="submit" value="選択">
 				</form>
 			</td>
-			<td th:text="${prod.prodId}"></td>
-			<td th:text="${prod.prodName}"></td>
+			<td th:text="${prod.productId}"></td>
+			<td th:text="${prod.productName}"></td>
 			<td th:text="${prod.price + '円'}"></td>
 			<td><img th:src="${prod.imgId}" alt="画像" height="80px" width="130px"></td>
 		</tr>

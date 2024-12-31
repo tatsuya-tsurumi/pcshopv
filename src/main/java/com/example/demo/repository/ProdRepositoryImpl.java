@@ -32,9 +32,10 @@ public class ProdRepositoryImpl implements ProdRepository {
 		List<Prod> result = new ArrayList<Prod>();
 		for(Map<String, Object> one : list) {
 			Prod prod = new Prod();
-			prod.setProdId((String) one.get("product_id"));
-			prod.setProdName((String) one.get("product_name"));
-			prod.setPrice((int) one.get("price"));
+			prod.setProductId((String) one.get("product_id"));
+			prod.setProductName((String) one.get("product_name"));
+			String price = String.valueOf(one.get("price"));
+			prod.setPrice(price);
 			prod.setImgId((String) one.get("img_id"));
 			result.add(prod);
 			
@@ -100,9 +101,9 @@ public class ProdRepositoryImpl implements ProdRepository {
 			prod.setSalesId((int) one.get("sales_id"));
 			prod.setUserId((String) one.get("user_id"));
 			prod.setUserName((String) one.get("user_name"));
-			prod.setProdId((String) one.get("product_id"));
-			prod.setProdName((String) one.get("product_name"));
-			prod.setPrice((int) one.get("price"));
+			prod.setProductId((String) one.get("product_id"));
+			prod.setProductName((String) one.get("product_name"));
+			prod.setPrice((String) one.get("price"));
 			prod.setQuantity((int) one.get("quantity"));
 			prod.setSalesDate((Date) one.get("sales_date"));
 			result.add(prod);

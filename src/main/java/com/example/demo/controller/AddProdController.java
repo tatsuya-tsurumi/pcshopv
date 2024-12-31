@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.Service.ProdService;
+import com.example.demo.entity.Prod;
 import com.example.demo.form.AddProdForm;
 
 import jakarta.servlet.http.HttpSession;
@@ -16,14 +18,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddProdController {
 	
+	private final ProdService service;
+	
 	@PostMapping("/add-prod")
 	public String addProd(@ModelAttribute AddProdForm form,RedirectAttributes redirectAttributes,
 			HttpSession session) {
 		
+		
 		//カートへ商品を追加するをサービス層へ依頼
 		@SuppressWarnings("unchecked")
-		List<AddProdForm> cart = (List<AddProdForm>) session.getAttribute("cart");
-		cart.add(form);
+		List<Prod> cart = (List<Prod>) session.getAttribute("cart");
+		cart = service.addProd(form, session);
 		session.setAttribute("cart", cart);
 
 		
