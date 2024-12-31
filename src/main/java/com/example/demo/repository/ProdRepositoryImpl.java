@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Prod;
-import com.example.demo.form.AddProdForm;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +20,7 @@ public class ProdRepositoryImpl implements ProdRepository {
 
 	private final JdbcTemplate jdbcTemplate;
 	
+	//DBへアクセス、商品一覧を検索する処理
 	@Override
 	public List<Prod> selectByProd() {
 		
@@ -44,9 +44,11 @@ public class ProdRepositoryImpl implements ProdRepository {
 		return result;
 	}
 
+	//DBへアクセス、商品を購入する処理
 	@Override
-	public void insertProd(List<AddProdForm> form, HttpSession session) {
-		// TODO 自動生成されたメソッド・スタブ
+	public int insertProd(List<Prod> form, HttpSession session) {
+		
+		int cnt = 0;
 		
 		String sql = "INSERT INTO t_sales (user_id, product_id, quantity, sales_date)"
 				+ "VALUES (?, ?, ?, ?)";
@@ -54,18 +56,20 @@ public class ProdRepositoryImpl implements ProdRepository {
 		Date currentDate = new Date(Calendar.getInstance().getTimeInMillis());
 		
 		@SuppressWarnings("unchecked")
-		List<AddProdForm> cart = (List<AddProdForm>) session.getAttribute("cart");
+		List<Prod> cart = (List<Prod>) session.getAttribute("cart");
 		String userId = (String) session.getAttribute("userId");
 		
-		for(AddProdForm num : cart) {
-			jdbcTemplate.update(sql, userId,num.getProductId(), 1 , currentDate);
+		for(Prod num : cart) {
+			cnt += jdbcTemplate.update(sql, userId,num.getProductId(), 1 , currentDate);
 		}
 		
-		System.out.println(cart);
-		System.out.println(userId);
-		
+		if(cnt != cart.size()) {
+			cnt = 0;
+		}
+		return cnt;
 	}
 
+	//DBへアクセス、購入履歴を検索する処理
 	@Override
 	public List<Prod> selectByUserId(String userId) {
 		String sql = 

@@ -14,7 +14,7 @@ public interface ProdService {
 	List<Prod> addProd(AddProdForm form, HttpSession session);
 	
 	//カート内の商品を購入する処理
-	void payProd(List<AddProdForm> cart,HttpSession session);
+	int payProd(List<Prod> cart,HttpSession session);
 	
 	//DBから過去に購入した商品を検索する処理
 	List<Prod> findByUserId(String userId);

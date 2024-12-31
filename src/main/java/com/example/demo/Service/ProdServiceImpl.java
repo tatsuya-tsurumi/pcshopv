@@ -17,10 +17,9 @@ public class ProdServiceImpl implements ProdService {
 	
 	private final ProdRepository repository;
 
-	//DBから全商品を検索する処理
+	//DBから全商品を検索する処理をインフラ層へ依頼
 	@Override
 	public List<Prod> findByProd() {
-		// TODO 自動生成されたメソッド・スタブ
 		List<Prod> list = repository.selectByProd();
 		return list;
 	}
@@ -28,8 +27,7 @@ public class ProdServiceImpl implements ProdService {
 	//商品をカートへ追加する処理
 	@Override
 	public List<Prod> addProd(AddProdForm form, HttpSession session) {
-		// TODO 自動生成されたメソッド・スタブ
-		
+
 		@SuppressWarnings("unchecked")
 		List<Prod> cart = (List<Prod>) session.getAttribute("cart");
 		Prod prod = new Prod();
@@ -40,25 +38,23 @@ public class ProdServiceImpl implements ProdService {
 		cart.add(prod);
 		 
 		 return cart;
-
 	}
 
-	//カート内の商品を購入する処理
+	//カート内の商品を購入する処理をインフラ層へ依頼
 	@Override
-	public void payProd(List<AddProdForm> form, HttpSession session) {
-		// 実際のDBアクセスをインフラ層へ依頼
-		repository.insertProd(form, session);
-		
+	public int payProd(List<Prod> form, HttpSession session) {
 		int sum = 0;
+		int cnt= 0;
+		cnt = repository.insertProd(form, session);
 		
 		@SuppressWarnings("unchecked")
-		List<AddProdForm> cart = (List<AddProdForm>) session.getAttribute("cart");
-		for(AddProdForm num : cart) {
+		List<Prod> cart = (List<Prod>) session.getAttribute("cart");
+		for(Prod num : cart) {
 			sum += Integer.parseInt(num.getPrice());
 		}
-		
-		
 		session.setAttribute("sum", sum);
+		
+		return cnt;
 	}
 	
 	//DBから過去に購入した商品を検索する処理

@@ -5,7 +5,7 @@ import java.sql.Date;
 import lombok.Data;
 
 @Data
-public class PaymentForm {
+public class PayForm {
 	private String userId;
 	private String productId;
 	private int quantity;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Prod;
 import com.example.demo.form.AddProdForm;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +23,7 @@ public class RemoveProdController {
 		
 		
 		@SuppressWarnings("unchecked")
-		List<AddProdForm> cart = (List<AddProdForm>) session.getAttribute("cart");
+		List< Prod> cart = (List<Prod>) session.getAttribute("cart");
 		cart.remove(idx);
 		
 		session.setAttribute("cart", cart);
