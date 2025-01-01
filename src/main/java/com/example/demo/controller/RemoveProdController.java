@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.Service.ProdService;
 import com.example.demo.entity.Prod;
+import com.example.demo.service.ProdService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

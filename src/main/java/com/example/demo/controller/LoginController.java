@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.Service.ProdService;
-import com.example.demo.Service.UserService;
 import com.example.demo.entity.Prod;
 import com.example.demo.form.LoginForm;
+import com.example.demo.service.ProdService;
+import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

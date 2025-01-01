@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.Service.UserService;
 import com.example.demo.form.ChgPassForm;
+import com.example.demo.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 

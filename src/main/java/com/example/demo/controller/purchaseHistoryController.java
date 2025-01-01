@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.example.demo.Service.ProdService;
 import com.example.demo.entity.Prod;
 import com.example.demo.form.HistoryForm;
+import com.example.demo.service.ProdService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
