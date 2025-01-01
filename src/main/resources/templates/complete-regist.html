@@ -7,13 +7,16 @@
 </head>
 <body>
 	<h2	>ユーザー登録完了</h2>
+	<div th:if="${session.userId != null}">	
+		<p th:text="${registMsg}" class="regist-msg"></p>
+		<p th:text=" 'ようこそ、' + ${session.userName} + 'さん'"></p>
 		
-	<p th:text="${registMsg}" class="regist-msg"></p>
-	
-	<p th:text=" 'ようこそ、' + ${session.userName} + 'さん'"></p>
-	
-	<p><a th:href="prod-list">商品選択画面へ</a></p>
-	<p><a th:href="login-page">ログイン画面へ</a></p>
-
+		<p><a th:href="prod-list">商品選択画面へ</a></p>
+		<p><a th:href="login-page">ログイン画面へ</a></p>
+	</div>
+	<div th:if="${session.userId == null}")>
+		<p>ログイン情報を確認できません。お手数ですが再度ログインしてください</p>
+		<p><a th:href="login-page">ログイン画面へ</a></p>
+	</div>
 </body>
 </html>

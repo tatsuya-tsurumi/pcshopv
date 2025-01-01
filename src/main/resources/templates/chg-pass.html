@@ -6,19 +6,22 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	
-	<div th:insert="~{header}"></div>
+	<div th:if="${session.userId != null}">
+		<div th:insert="~{header}"></div>
 	
 		<h2	>パスワード変更</h2>
 		
 		<p th:text="${chg_pass_msg}" class="chg_pass_msg"></p>
-	
-	<form action="chg-pass-execute" method="post">
-		パスワード:<input type="password" name="password" required><br>
-		再入力&emsp;&emsp;:<input type="password" name="again" required><br><br>
-		<input type="hidden" name="userId", th:value="${session.userId}">
-		<input type="submit" value="パスワード変更">
-	</form>
-
+		
+		<form action="chg-pass-execute" method="post">
+			パスワード:<input type="password" name="password" required><br>
+			再入力&emsp;&emsp;:<input type="password" name="again" required><br><br>
+			<input type="hidden" name="userId", th:value="${session.userId}">
+			<input type="submit" value="パスワード変更">
+		</form>
+	<div th:if="${session.userId == null}")>
+		<p>ログイン情報を確認できません。お手数ですが再度ログインしてください</p>
+		<p><a th:href="login-page">ログイン画面へ</a></p>
+	</div>
 </body>
 </html>

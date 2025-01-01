@@ -7,41 +7,40 @@
 </head>
 <body>
 		
-	<div th:insert="~{header}"></div>
-
-	<h2>商品選択</h2>
+	<div th:if="${session.userId != null}">
+		<div th:insert="~{header}"></div>
+		<h2>商品選択</h2>
+		<p th:text="${msg}" class="select_msg"></p>
 	
-	<p th:text="${msg}" class="select_msg"></p>
-	
-
-	
-	<table class="select-list">
-		<tr>
-			<th></th><th>商品ID</th><th>商品名</th><th>価格</th><th>写真</th>
-		</tr>
+		<table class="select-list">
+			<tr>
+				<th></th><th>商品ID</th><th>商品名</th><th>価格</th><th>写真</th>
+			</tr>
+			<tr th:each="prod : ${session.prodList}">
+				<td>
+					<form th:action="@{/add-prod}" method="post">
+						<input type="hidden" name="productId" th:value="${prod.productId}"> 
+						<input type="hidden" name="productName" th:value="${prod.productName}"> 
+						<input type="hidden" name="price" th:value="${prod.price}"> 
+						<input type="hidden" name="imgId" th:value="${prod.imgId}"> 
+						<input type="submit" value="選択">
+					</form>
+				</td>
+				<td th:text="${prod.productId}"></td>
+				<td th:text="${prod.productName}"></td>
+				<td th:text="${prod.price + '円'}"></td>
+				<td><img th:src="${prod.imgId}" alt="画像" height="80px" width="130px"></td>
+			</tr>
+		</table>
 		
-		<tr th:each="prod : ${session.prodList}">
-			<td>
-				<form th:action="@{/add-prod}" method="post">
-					<input type="hidden" name="productId" th:value="${prod.productId}"> 
-					<input type="hidden" name="productName" th:value="${prod.productName}"> 
-					<input type="hidden" name="price" th:value="${prod.price}"> 
-					<input type="hidden" name="imgId" th:value="${prod.imgId}"> 
-					<input type="submit" value="選択">
-				</form>
-			</td>
-			<td th:text="${prod.productId}"></td>
-			<td th:text="${prod.productName}"></td>
-			<td th:text="${prod.price + '円'}"></td>
-			<td><img th:src="${prod.imgId}" alt="画像" height="80px" width="130px"></td>
-		</tr>
-		
-	</table>
-	
-	<div th:if="${session.prodList == null}" class="prod-list-error-msg">
-		<p>商品一覧を取得できませんでした。</p>
-		<p>お手数ですが再ログインしてください</p>
+		<div th:if="${session.prodList == null}" class="prod-list-error-msg">
+			<p>商品一覧を取得できませんでした。</p>
+			<p>お手数ですが再ログインしてください</p>
+		</div>
 	</div>
-
+	<div th:if="${session.userId == null}")>
+		<p>ログイン情報を確認できません。お手数ですが再度ログインしてください</p>
+		<p><a th:href="login-page">ログイン画面へ</a></p>
+	</div>
 </body>
 </html>
