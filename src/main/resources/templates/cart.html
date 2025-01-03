@@ -8,6 +8,7 @@
 <body>
 		<div th:if="${session.userId != null}">
 			<div th:insert="~{header}"></div>
+	<h2>商品選択</h2>
 		
 			<p th:if="${session.cart.size() == 0}">カートの中は空です</p>
 			<div th:if="${session.cart.size() > 0}">

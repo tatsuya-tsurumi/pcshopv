@@ -11,8 +11,8 @@
 		
 		<p th:if="${purchaseList.size() == 0}">購入履歴はありません</p>
 		
-		<div th:if="${purchaseList.size() > 0}">
 			<h2>購入履歴</h2>
+		<div th:if="${purchaseList.size() > 0}">
 			<table class="history-list">
 				<tr>
 					<th>売上ID</th><th>商品ID</th><th>商品名</th>
